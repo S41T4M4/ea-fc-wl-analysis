@@ -1,40 +1,15 @@
-.header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding: 20px 50px; /* Adiciona um espaçamento nas laterais */
-  background-color: transparent;
-  display: flex;
-  justify-content: space-between; /* Espaça os elementos: logo e navbar */
-  align-items: center; /* Centraliza verticalmente */
-  z-index: 100;
+/* Animação gradual de fade-in */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px); /* Move o conteúdo para baixo inicialmente */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0); /* Traz o conteúdo para a posição original */
+  }
 }
 
-.logo {
-  font-size: 25px;
-  color: white;
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.navbar {
-  display: flex; /* Torna os links da navbar em linha */
-}
-
-.navbar a {
-  font-size: 18px;
-  color: white;
-  text-decoration: none;
-  font-weight: 500;
-  margin-left: 35px;
-  transition: 0.3s;
-}
-
-.navbar a:hover,
-.navbar a.active {
-  color: rgb(22, 146, 255);
-}
 .home {
   height: 100vh;
   background: url('/assets/home.jpg') no-repeat;
@@ -47,40 +22,58 @@
 }
 
 .home-content {
-  max-width: 600px; /* Largura máxima do conteúdo */
-  text-align: right; /* Alinha o texto dentro do conteúdo para a direita */
+  max-width: 600px;
+  text-align: right;
+  opacity: 0; /* Começa invisível */
+  animation: fadeIn 1s ease-in-out forwards;
+  animation-delay: 0.2s; /* Pequeno atraso para suavizar */
 }
 
-.home-content h1{
-font-size: 56px;
-font-weight: 700;
-line-height: 1.2;
+.home-content h1 {
+  font-size: 56px;
+  font-weight: 700;
+  line-height: 1.2;
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out forwards;
+  animation-delay: 0.4s; /* Atraso para o título */
 }
-.home-content h3{
+
+.home-content h3 {
   font-size: 32px;
   font-weight: 700;
   color: aqua;
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out forwards;
+  animation-delay: 0.6s; /* Atraso maior para o subtítulo */
 }
-.home-content p{
-  font-size:16px;
+
+.home-content p {
+  font-size: 16px;
   margin: 20px 0 40px;
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out forwards;
+  animation-delay: 0.8s; /* O parágrafo aparece mais tarde */
 }
-.home-content .btn-box{
+
+.home-content .btn-box {
   display: flex;
-  justify-content: flex-end; /* Alinha os botões à direita */
-  width: 100%; /* Ocupa toda a largura disponível */
+  justify-content: flex-end;
+  width: 100%;
   height: 50px;
   margin-left: auto;
-  
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out forwards;
+  animation-delay: 1s; /* Os botões aparecem por fim */
 }
+
 .btn-box button {
   margin-right: 10px;
-  position: relative; /* Necessário para posicionar o ::before */
-  overflow: hidden;   /* Esconde o background animado quando ele está fora da área do botão */
-  background: transparent; /* Para ambos os botões */
-  color: rgb(255, 255, 255); /* A cor do texto dos botões */
-  border: 1px solid #00abf0; /* Borda do botão */
-  transition: color 0.3s; /* Transição de cor suave ao passar o mouse */
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  color: rgb(255, 255, 255);
+  border: 1px solid #00abf0;
+  transition: color 0.3s;
 }
 
 .btn-box button:hover {
@@ -93,13 +86,13 @@ line-height: 1.2;
   position: absolute;
   top: 0;
   left: 0;
-  width: 0; /* Largura inicial 0 */
+  width: 0;
   height: 100%;
-  background: #00abf0; /* Cor de fundo do efeito */
-  z-index: -1; /* Colocado atrás do texto */
-  transition: width 0.5s; /* Animação suave de 0.5s */
+  background: #00abf0;
+  z-index: -1;
+  transition: width 0.5s;
 }
 
 .btn-box button:hover::before {
-  width: 100%; /* Preenche o botão ao passar o mouse */
+  width: 100%;
 }

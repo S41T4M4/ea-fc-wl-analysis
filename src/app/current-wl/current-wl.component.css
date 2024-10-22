@@ -1,0 +1,60 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #222;
+  }
+  
+  /* Centraliza tudo na tela */
+  .team-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+  }
+  
+  /* Grid para a formação */
+  .team-formation {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: repeat(5, 100px);
+    gap: 20px;
+    justify-items: center;
+    align-items: center;
+  }
+  
+  .player {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #444;
+    color: white;
+    border: 2px solid #00abf0;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+    width: 100px;
+    height: 100px;
+  }
+  
+  /* Posicionamento dos jogadores no grid */
+  .player-lw { grid-area: 1 / 1; }
+  .player-st { grid-area: 1 / 2; }
+  .player-rw { grid-area: 1 / 3; }
+  
+  .player-cm:nth-child(4) { grid-area: 2 / 2; }
+  .player-cm:nth-child(5) { grid-area: 3 / 2; }
+  .player-cm:nth-child(6) { grid-area: 4 / 2; }
+  
+  .player-lb { grid-area: 4 / 1; }
+  .player-cb { grid-area: 4 / 2; }
+  .player-rb { grid-area: 4 / 3; }
+  
+  .player-gk { grid-area: 5 / 2; }
+  
