@@ -48,6 +48,7 @@
 }
 
 .home-content p {
+  color: rgb(255, 255, 255);
   font-size: 16px;
   margin: 20px 0 40px;
   opacity: 0;
