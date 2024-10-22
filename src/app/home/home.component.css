@@ -35,23 +35,71 @@
 .navbar a.active {
   color: rgb(22, 146, 255);
 }
-.home{
-  display:flex;
-  align-items:center;
+.home {
   height: 100vh;
-  padding: 0 10%;
+  background: url('/assets/home.jpg') no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* Alinha o conteúdo para o lado direito */
+  padding: 0 10%; /* Mantém o espaçamento nas laterais */
 }
-.home-content{
 
-  max-width: 600px;
-
+.home-content {
+  max-width: 600px; /* Largura máxima do conteúdo */
+  text-align: right; /* Alinha o texto dentro do conteúdo para a direita */
 }
+
 .home-content h1{
 font-size: 56px;
 font-weight: 700;
+line-height: 1.2;
 }
 .home-content h3{
   font-size: 32px;
   font-weight: 700;
   color: aqua;
+}
+.home-content p{
+  font-size:16px;
+  margin: 20px 0 40px;
+}
+.home-content .btn-box{
+  display: flex;
+  justify-content: flex-end; /* Alinha os botões à direita */
+  width: 100%; /* Ocupa toda a largura disponível */
+  height: 50px;
+  margin-left: auto;
+  
+}
+.btn-box button {
+  margin-right: 10px;
+  position: relative; /* Necessário para posicionar o ::before */
+  overflow: hidden;   /* Esconde o background animado quando ele está fora da área do botão */
+  background: transparent; /* Para ambos os botões */
+  color: rgb(255, 255, 255); /* A cor do texto dos botões */
+  border: 1px solid #00abf0; /* Borda do botão */
+  transition: color 0.3s; /* Transição de cor suave ao passar o mouse */
+}
+
+.btn-box button:hover {
+  cursor: pointer;
+  color: #a8fffb; /* Cor do texto ao passar o mouse */
+}
+
+.btn-box button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0; /* Largura inicial 0 */
+  height: 100%;
+  background: #00abf0; /* Cor de fundo do efeito */
+  z-index: -1; /* Colocado atrás do texto */
+  transition: width 0.5s; /* Animação suave de 0.5s */
+}
+
+.btn-box button:hover::before {
+  width: 100%; /* Preenche o botão ao passar o mouse */
 }
