@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrl: './current-wl.component.css'
 })
 export class CurrentWlComponent {
-
+titleColor = 'black';
 }
