@@ -1,104 +1,57 @@
-<app-header [logoColor]="titleColor"></app-header>
 <section class="home">
-  <div class="home-content">
-    <div class="ranking-table">
-      <table>
-        <thead [ngStyle]="{'color': 'white'}">
-          Data Wl : 21/02/2024
-          <tr>
-            <th>JOGADOR</th>
-            <th>POSIÇÃO</th>
-            <th>GOLS</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-           
-            <td>Haaland</td>
-            <td>Atacante</td>
-            <td class="goals">10</td>
-          </tr>
-          <tr>
-  
-            <td>Mbeumo</td>
-            <td>Atacante</td>
-            <td class="goals">6</td>
-          </tr>
-          <tr>
-
-            <td>Palmer</td>
-            <td>Meio Campo</td>
-            <td class="goals">6</td>
-          </tr>
-          <tr>
-    
-            <td>Salah</td>
-            <td>Atacante</td>
-            <td class="goals">5</td>
-          </tr>
-          <tr>
-    
-            <td>Salah</td>
-            <td>Atacante</td>
-            <td class="goals">5</td>
-          </tr>
-          <tr>
-    
-            <td>Salah</td>
-            <td>Atacante</td>
-            <td class="goals">5</td>
-          </tr>
-          <tr>
-    
-            <td>Salah</td>
-            <td>Atacante</td>
-            <td class="goals">5</td>
-          </tr>
-          <tr>
-    
-            <td>Salah</td>
-            <td>Atacante</td>
-            <td class="goals">5</td>
-          </tr>
-          <tr>
-    
-            <td>Salah</td>
-            <td>Atacante</td>
-            <td class="goals">5</td>
-          </tr>
-        </tbody>
-      </table>
-      <div class='analysis-wl'>
-
-
-      </div>
-    </div>
-    
+  <div class="input-wl" *ngIf="!isTrue">
+    <h1>Insira o Número da WL</h1>
+    <input [(ngModel)]="id_wl" placeholder="Número da WL" (keyup.enter)="onWlSubmit()" />
   </div>
 
+  <div class="home-content" *ngIf="isTrue">
+    <div class="ranking-analysis-wrapper"> <!-- Wrapper para organização vertical -->
+      <div class="ranking-table">
+        <table>
+          <thead [ngStyle]="{'color': 'white'}">
+            <tr>
+              <th>JOGADOR</th>
+              <th>OVERALL</th>
+              <th>POSIÇÃO</th>
+              <th>GOLS</th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let stat of stats">
+            <tr>
+              <td>{{ stat.nome }}</td>
+              <td>{{ stat.overall }}</td>
+              <td>{{ stat.posicao | uppercase }}</td>
+              <td>{{ stat.gols_marcados_na_wl }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-  <div class="analysis-section">
-      <h2>Análise da WL Atual</h2>
-      <div class="analysis-item">
-        <span>Gols feitos nessa WL:</span>
-        <span id="gols-feitos">36</span> <!-- Dado vindo da API -->
-      </div>
-      <div class="analysis-item">
-        <span>Média de gols por partida:</span>
-        <span id="media-gols">2.7</span> <!-- Dado vindo da API -->
-      </div>
-      <div class="analysis-item">
-        <span>Gols sofridos nessa WL:</span>
-        <span id="gols-sofridos">21</span> <!-- Dado vindo da API -->
-      </div>
-      <div class="analysis-item">
-        <span>Média de gols sofridos por partida:</span>
-        <span id="media-gols-sofridos">1.5</span> <!-- Dado vindo da API -->
-      </div>
-      <div class="analysis-comparison">
-        <h3>Comparação com a última WL:</h3>
-        <span id="comparacao-wl">16% melhor</span> <!-- Dado vindo da API -->
+      <div class="analysis-section" *ngIf="weekendLeague">
+        <h2>Análise da WL do dia: {{weekendLeague.data}}</h2>
+        <div class="analysis-item">
+          <span>Gols feitos nessa WL:</span>
+          <span id="gols-feitos">{{totalGols}}</span>
+        </div>
+        <div class="analysis-item">
+          <span>Média de gols por partida:</span>
+          <span id="gols-feitos">{{mediaWl | number: '1.2-2' }}</span>
+        </div>
+        <div class="analysis-item">
+          <span>Gols sofridos nessa WL:</span>
+          <span id="gols-feitos">{{weekendLeague.gols_sofridos}}</span>
+        </div>
+        <div class="analysis-item">
+          <span>Média de gols sofridos por partida :</span>
+          <span id="gols-feitos">{{mediaGolsSofridos | number: '1.2-2'}}</span>
+        </div>
       </div>
     </div>
+  </div>
+  <div class="analysis-chart-container">
+    <input placeholder="Número da WL"/>
+    <div id="analysis-chart"></div>
+  </div>
   
+
 </section>
