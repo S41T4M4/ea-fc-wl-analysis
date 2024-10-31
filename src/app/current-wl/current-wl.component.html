@@ -9,11 +9,13 @@
       <div class="ranking-table">
         <table>
           <thead [ngStyle]="{'color': 'white'}">
+            Análise jogadores
             <tr>
               <th>JOGADOR</th>
               <th>OVERALL</th>
               <th>POSIÇÃO</th>
               <th>GOLS</th>
+              <th>ASSISTENCIAS</th>
             </tr>
           </thead>
           <tbody *ngFor="let stat of stats">
@@ -22,6 +24,7 @@
               <td>{{ stat.overall }}</td>
               <td>{{ stat.posicao | uppercase }}</td>
               <td>{{ stat.gols_marcados_na_wl }}</td>
+              <td>{{ stat.assistencias_na_wl}}</td>
             </tr>
           </tbody>
         </table>
@@ -45,13 +48,32 @@
           <span>Média de gols sofridos por partida :</span>
           <span id="gols-feitos">{{mediaGolsSofridos | number: '1.2-2'}}</span>
         </div>
+        <div class="analysis-item">
+          <span>Digite a o numero da wl que deseja comparar : </span>
+          <input [(ngModel)]="idWL" placeholder="Numero válido de wl" (keyup.enter)="onWlSubmitComparative()"/>
+        </div>
+        
+       <div class="analysis-section" *ngIf="weekendLeagueComparative">
+        <h2>Análise da WL do dia: {{weekendLeagueComparative.data}}</h2>
+        <div class="analysis-item">
+          <span>Gols feitos nessa WL:</span>
+          <span id="gols-feitos">{{weekendLeagueComparative.gols_marcados}}</span>
+        </div>
+        
+        <div class="analysis-item">
+          <span>Gols sofridos nessa WL:</span>
+          <span id="gols-feitos">{{weekendLeagueComparative.gols_sofridos}}</span>
+        </div>
+        
       </div>
+
+       
+      </div>
+     
     </div>
+    
   </div>
-  <div class="analysis-chart-container">
-    <input placeholder="Número da WL"/>
-    <div id="analysis-chart"></div>
-  </div>
+ 
   
 
 </section>

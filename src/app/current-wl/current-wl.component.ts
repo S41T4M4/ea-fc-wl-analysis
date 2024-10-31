@@ -12,7 +12,9 @@ import * as Highcharts from 'highcharts';
 export class CurrentWlComponent {
   HighCharts: typeof Highcharts = Highcharts;
   stats: StatsWl[] = [];
+  statsWl:StatsWl[] = [];
   weekendLeague: WeekendLeagueModel | null = null;
+  weekendLeagueComparative: WeekendLeagueModel | null = null;
   totalGols: number = 0;
   titleColor = 'black';
   jogosWl: number = 15;
@@ -21,44 +23,13 @@ export class CurrentWlComponent {
   id_wl: number = 0;
   golsSofridos: number = 0;
   mediaGolsSofridos: number = 0;
+  idWL: number = 0;
 
   constructor(private currentWlService: CurrentWlService) {}
   
   ngOnInit(): void {}
 
-  renderChart(): void {
-    Highcharts.chart('analysis-chart', {
-      chart: {
-        type: 'column',
-        backgroundColor: 'transparent'
-      },
-      title: {
-        text: 'Análise de Gols da WL',
-        style: { color: '#fff' }
-      },
-      xAxis: {
-        categories: ['Gols Feitos', 'Gols Sofridos', 'Média Gols Feitos', 'Média Gols Sofridos'],
-        labels: {
-          style: { color: '#fff' }
-        }
-      },
-      yAxis: {
-        title: {
-          text: 'Quantidade',
-          style: { color: '#fff' }
-        },
-        labels: {
-          style: { color: '#fff' }
-        }
-      },
-      series: [{
-        name: 'Estatísticas',
-        data: [this.totalGols, this.golsSofridos, this.mediaWl, this.mediaGolsSofridos],
-        type: 'column',
-        color: '#47d3e6'
-      }]
-    });
-  }
+  
 
   onWlSubmit(): void {
     if (this.id_wl > 0) { 
@@ -66,6 +37,20 @@ export class CurrentWlComponent {
       this.loadCurrentWl();
       this.getWlById();
     }
+  }
+  onWlSubmitComparative():void{
+    if(this.idWL > 0){
+       this.loadAnotherWl();
+
+    }
+  }
+  loadAnotherWl():void{
+    this.currentWlService.getJogadoresByWl(this.idWL).subscribe((
+      data:StatsWl[]
+    )=>{
+      this.statsWl = data;
+
+    })
   }
 
   loadCurrentWl(): void {
@@ -82,7 +67,6 @@ export class CurrentWlComponent {
       this.golsSofridos = this.weekendLeague.gols_sofridos;
       this.calcularMediaGolsSofridos(); 
       
-      this.renderChart(); 
     });
   }
 
